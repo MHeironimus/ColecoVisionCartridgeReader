@@ -1,0 +1,53 @@
+﻿<Window x:Class="ColecoVisionCartridgeReader.ReadCartridgeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        Title="Read Cartridge" 
+        Height="200" Width="300"
+        ResizeMode="NoResize" Icon="Resources/chip.ico" Loaded="Window_Loaded"
+        >
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+            
+            <Label Content="Read ColecoVison Cartridge" FontWeight="Bold"></Label>
+            
+            <TextBlock TextWrapping="Wrap" Padding="8,0,0,0">
+                Select the Arduino serial port to use read the ColecoVision cartridge.
+            </TextBlock>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="0" Content="Serial Port:" VerticalAlignment="Center"></Label>
+                <ComboBox Grid.Row="0" Grid.Column="1" Name="ArduinoPort" Margin="6,6,0,2" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Baud Rate:" VerticalAlignment="Center"></Label>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="BaudRateComboBox" Margin="6,3,0,2" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
+                
+            </Grid>
+
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="5,10" Name="OkButton" Content="Read" IsDefault="True" Width="70" Click="OkButton_Click" />
+            <Button Margin="5,10" Name="CancelButton" Content="Cancel" IsCancel="True" Width="70" />
+        </StackPanel>
+
+    </Grid>
+</Window>

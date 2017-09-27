@@ -1,0 +1,71 @@
+﻿<Window x:Class="ColecoVisionCartridgeReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ColecoVision Cartridge Reader" Height="400" Width="600" ResizeMode="CanResizeWithGrip" Icon="Resources/chip.ico">
+    <Window.Resources>
+        <BitmapImage x:Key="FileOpenIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources\Open.png"></BitmapImage>
+        <BitmapImage x:Key="FileSaveIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources\Save.png"></BitmapImage>
+        <BitmapImage x:Key="FileReadIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources\Memory.png"></BitmapImage>
+        <BitmapImage x:Key="FileExitIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources\Exit.png"></BitmapImage>
+        <BitmapImage x:Key="HelpAboutIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="Resources\About.png"></BitmapImage>
+    </Window.Resources>
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo></TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    
+    <Grid Name="MainGrid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22" />
+            <RowDefinition />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Menu x:Name="MainMenu" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsMainMenu="True" Width="{Binding ElementName=MainGrid,Path=ActualWidth}" >
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Click="FileOpen_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource FileOpenIcon}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="FileSaveAsMenuItem" Header="_Save As..." Click="FileSaveAs_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource FileSaveIcon}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Name="FileReadCartridgeMenuItem" Header="_Read From Arduino..." Click="FileReadCartridge_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource FileReadIcon}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="E_xit" Click="FileExit_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource FileExitIcon}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="HelpAbout_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource HelpAboutIcon}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <TextBox x:Name="CartridgeDataTextBox" Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,-0.723,0,0.723" IsReadOnly="True" IsReadOnlyCaretVisible="True" FontFamily="Courier New" />
+
+        <StatusBar Grid.Column="0" Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusBar" Text="" />
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>
